@@ -3,25 +3,60 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #6366F1;
+  /* Indigo-500 */
+  --success: #10B981;
+  /* Emerald-500 */
+  --warning: #F59E0B;
+  /* Amber-500 */
+  --error: #EF4444;
+  /* Red-500 */
+  --bg-dark: #0F172A;
+  /* Slate-900 */
+  --bg-light: #F8FAFC;
+  /* Slate-50 */
+  --card: rgba(255, 255, 255, 0.9);
+  --shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  --background: var(--bg-light);
+  --foreground: var(--bg-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: var(--bg-dark);
+  --foreground: var(--bg-light);
+  --card: rgba(15, 23, 42, 0.9);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  /* Setup Inter in app layout */
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .glass-card {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    border-radius: 16px;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
   }
 }

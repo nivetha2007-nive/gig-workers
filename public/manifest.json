@@ -1,0 +1,16 @@
+{
+  "name": "GigCredit AI",
+  "short_name": "GigCredit",
+  "description": "Credit Scores for Gig Workers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#6366F1",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
