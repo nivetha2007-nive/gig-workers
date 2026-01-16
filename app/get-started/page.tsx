@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Camera, User, Smartphone, Fingerprint, CreditCard, Briefcase, Rocket, Check, Lock } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FileUploadZone } from '@/components/FileUploadZone';
+import { FileUploadZone } from '@/Frontend/components/FileUploadZone';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 

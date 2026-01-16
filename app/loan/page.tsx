@@ -1,5 +1,5 @@
 'use client';
-import { LoanCalculator } from '@/components/LoanCalculator';
+import { LoanCalculator } from '@/Frontend/components/LoanCalculator';
 import { ChevronLeft, CheckCircle, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

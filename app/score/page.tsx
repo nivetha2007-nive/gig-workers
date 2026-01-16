@@ -1,8 +1,8 @@
 'use client';
 
 import { useScoreStore } from '@/lib/store';
-import { ScoreCircle } from '@/components/ScoreCircle';
-import { PillarCard } from '@/components/PillarCard';
+import { ScoreCircle } from '@/Frontend/components/ScoreCircle';
+import { PillarCard } from '@/Frontend/components/PillarCard';
 import { Share2, RefreshCw, ChevronLeft, ArrowRight, Zap, FileText, Briefcase, Users, Activity, Lock, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';

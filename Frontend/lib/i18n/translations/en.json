@@ -1,0 +1,131 @@
+{
+  "app": {
+    "title": "GigCredit",
+    "subtitle": "Credit Score for Gig Workers",
+    "description": "Get your credit score in minutes, designed for gig economy workers"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "getStarted": "Get Started",
+    "score": "My Score",
+    "loan": "Loan Calculator",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "createAccount": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "sendLink": "Send Reset Link"
+  },
+  "form": {
+    "step": "Step",
+    "of": "of",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "skip": "Skip (Optional)",
+    "required": "This field is required",
+    "loading": "Loading...",
+    "uploading": "Uploading..."
+  },
+  "steps": {
+    "basicInfo": {
+      "title": "Basic Information",
+      "subtitle": "Tell us about yourself",
+      "name": "Full Name",
+      "age": "Age",
+      "gender": "Gender",
+      "phone": "Phone Number",
+      "email": "Email (Optional)"
+    },
+    "identity": {
+      "title": "Identity Documents",
+      "subtitle": "Upload your Aadhaar & PAN",
+      "aadhaar": "Aadhaar Number",
+      "pan": "PAN Number",
+      "uploadAadhaar": "Upload Aadhaar Document",
+      "uploadPan": "Upload PAN Document",
+      "dragDrop": "Drag and drop or click to select"
+    },
+    "bankStatement": {
+      "title": "Bank Statement",
+      "subtitle": "Upload your 6-month bank statement",
+      "selectBank": "Select your bank",
+      "selectFormat": "Select format (PDF or CSV)",
+      "upload": "Upload bank statement",
+      "info": "We analyze your transaction patterns to assess creditworthiness"
+    },
+    "utilityBills": {
+      "title": "Utility Bills",
+      "subtitle": "Upload 6 utility bills for address verification",
+      "required": "All 6 bills are required",
+      "electricity": "Electricity Bill",
+      "water": "Water Bill",
+      "mobile": "Mobile Bill",
+      "gas": "Gas Bill",
+      "dth": "DTH Bill",
+      "broadband": "Broadband Bill"
+    },
+    "gigPlatform": {
+      "title": "Gig Platform Information",
+      "subtitle": "Optional: Share your gig platform details",
+      "platform": "Gig Platform",
+      "username": "Platform Username",
+      "earnings": "Monthly Earnings",
+      "yearsActive": "Years Active",
+      "rating": "Your Rating",
+      "screenshots": "Upload screenshots (Max 4)"
+    }
+  },
+  "score": {
+    "title": "Your Credit Score",
+    "subtitle": "Your personalized credit assessment",
+    "grade": "Grade",
+    "percentile": "Percentile",
+    "pillars": "Credit Pillars",
+    "loanEligibility": "Loan Eligibility",
+    "recommendations": "Recommendations",
+    "suggestions": "Suggestions",
+    "downloadReport": "Download Report",
+    "shareScore": "Share Score",
+    "viewDetails": "View Details"
+  },
+  "loan": {
+    "title": "Loan Calculator",
+    "loanAmount": "Loan Amount",
+    "interestRate": "Interest Rate",
+    "tenure": "Tenure (months)",
+    "monthlyEMI": "Monthly EMI",
+    "totalAmount": "Total Amount",
+    "totalInterest": "Total Interest",
+    "calculate": "Calculate EMI",
+    "applyNow": "Apply Now"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordMismatch": "Passwords do not match",
+    "fileToLarge": "File is too large",
+    "invalidFileType": "Invalid file type",
+    "networkError": "Network error. Please try again",
+    "serverError": "Server error. Please try again later",
+    "notFound": "Page not found"
+  },
+  "success": {
+    "accountCreated": "Account created successfully",
+    "documentUploaded": "Document uploaded successfully",
+    "evaluationComplete": "Evaluation completed successfully",
+    "passwordReset": "Password reset email sent"
+  }
+}
