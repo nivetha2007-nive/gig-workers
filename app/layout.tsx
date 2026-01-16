@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-import { ProtectedRoute } from '@/components/ProtectedRoute';
+import { ProtectedRoute } from '@/Frontend/components/ProtectedRoute';
 
 export default function RootLayout({
   children,
