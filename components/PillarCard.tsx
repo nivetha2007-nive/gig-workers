@@ -14,39 +14,47 @@ interface PillarCardProps {
 
 export function PillarCard({ icon, title, score, points, weight, boosts, color = "text-primary" }: PillarCardProps) {
     return (
-        <div className="min-w-[280px] p-6 rounded-[32px] bg-white border border-gray-100 hover:border-primary/50 transition-all duration-500 group snap-center relative overflow-hidden shadow-sm hover:shadow-md">
-            {/* Top Glow */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="min-w-[280px] p-1 rounded-[32px] bg-gradient-to-br from-white/40 to-white/0 hover:from-primary/20 hover:to-accent/20 transition-all duration-500 group snap-center relative shadow-sm hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white/90 backdrop-blur-xl h-full rounded-[30px] p-6 relative overflow-hidden">
 
-            <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
-                    <div className="w-6 h-6">{icon}</div>
+                {/* Background Decor */}
+                <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
+                <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors" />
+
+                <div className="flex items-center justify-between mb-6 relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 flex items-center justify-center text-primary shadow-[0_4px_20px_rgba(0,0,0,0.03)] group-hover:scale-110 group-hover:shadow-[0_8px_30px_rgba(0,102,255,0.15)] transition-all duration-500">
+                        <div className="w-7 h-7">{icon}</div>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        <div className="text-[20px] font-heading font-black text-foreground">{score}%</div>
+                        <div className="text-[9px] font-bold tracking-widest text-gray-400 uppercase">Efficiency</div>
+                    </div>
                 </div>
-                <div className="text-right">
-                    <div className="text-[10px] font-black tracking-widest text-primary uppercase">{points}</div>
+
+                <div className="mb-6 relative z-10">
+                    <h3 className="font-heading font-bold text-lg text-foreground mb-1 group-hover:text-primary transition-colors">{title}</h3>
+                    <p className="text-xs text-gray-500 font-medium">{points} Contribution</p>
                 </div>
-            </div>
 
-            <div className="mb-6">
-                <h3 className="font-heading font-bold text-lg text-foreground mb-4">{title}</h3>
-
-                <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                <div className="relative h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-6">
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${score}%` }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-accent to-primary shadow-[0_0_10px_rgba(0,102,255,0.3)]"
+                        transition={{ duration: 1.5, ease: "circOut" }}
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-accent shadow-[0_0_15px_rgba(0,102,255,0.5)]"
                     />
                 </div>
-            </div>
 
-            <div className="space-y-3">
-                {boosts.map((boost, i) => (
-                    <div key={i} className="flex items-center gap-2 text-[11px] font-bold text-gray-500 group-hover:text-gray-700 transition-colors">
-                        <ArrowUp className="w-3 h-3 text-success" />
-                        <span>{boost}</span>
-                    </div>
-                ))}
+                <div className="space-y-2 relative z-10">
+                    {boosts.slice(0, 2).map((boost, i) => (
+                        <div key={i} className="flex items-center gap-2 text-[10px] font-bold text-gray-500 bg-gray-50/50 p-2 rounded-lg border border-transparent group-hover:border-primary/10 group-hover:bg-primary/5 transition-all">
+                            <div className="w-4 h-4 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                                <ArrowUp className="w-2.5 h-2.5 text-success" />
+                            </div>
+                            <span className="truncate">{boost}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

@@ -58,6 +58,13 @@ export function ScoreCircle({ score, max, grade }: ScoreCircleProps) {
                             <stop offset="50%" stopColor="var(--primary)" />
                             <stop offset="100%" stopColor="var(--cyan)" />
                         </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
                     </defs>
 
                     {/* Background Path (Gray Track) */}
@@ -101,6 +108,7 @@ export function ScoreCircle({ score, max, grade }: ScoreCircleProps) {
                         initial={{ strokeDashoffset: circumference }}
                         animate={{ strokeDashoffset }}
                         transition={{ duration: 2, ease: "circOut" }}
+                        filter="url(#glow)"
                     />
                 </svg>
 
@@ -115,7 +123,7 @@ export function ScoreCircle({ score, max, grade }: ScoreCircleProps) {
                     </motion.div>
 
                     <div className="flex flex-col items-center -mt-2">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 dark:text-gray-500">
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 dark:text-gray-500 mb-2">
                             Hustle Score
                         </span>
 
@@ -124,9 +132,9 @@ export function ScoreCircle({ score, max, grade }: ScoreCircleProps) {
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ delay: 1.5, type: "spring" }}
-                                className="mt-4 flex items-center gap-2 bg-primary/20 backdrop-blur-md text-primary border border-primary/30 px-5 py-1.5 rounded-2xl text-xs font-black shadow-xl shadow-primary/10"
+                                className="flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-full text-sm font-black shadow-[0_10px_20px_rgba(0,102,255,0.3)] hover:scale-105 transition-transform"
                             >
-                                <TrendingUp className="w-3.5 h-3.5" />
+                                <TrendingUp className="w-4 h-4" />
                                 {grade} GRADE
                             </motion.div>
                         )}

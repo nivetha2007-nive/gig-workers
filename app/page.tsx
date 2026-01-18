@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import { Spotlight } from '@/components/ui/Spotlight';
 
 export default function LandingPage() {
   const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
@@ -149,19 +150,19 @@ export default function LandingPage() {
               transition={{ duration: 1 }}
               className="grid grid-cols-2 gap-4 relative"
             >
-              <div className="space-y-4">
-                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[350px]">
+              <div className="space-y-4 pt-8">
+                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[350px] animate-float">
                   <Image src="/images/gig-1.jpg" alt="Swiggy Delivery Partner" width={400} height={500} className="object-cover h-full w-full" />
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[250px]">
+                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[250px] animate-float" style={{ animationDelay: '2s' }}>
                   <Image src="/images/gig-3.jpg" alt="Multiple Gig Workers" width={400} height={500} className="object-cover h-full w-full" />
                 </motion.div>
               </div>
-              <div className="space-y-4 mt-8">
-                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[250px]">
+              <div className="space-y-4">
+                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[250px] animate-float" style={{ animationDelay: '1s' }}>
                   <Image src="/images/gig-2.png" alt="Bike Taxi" width={400} height={500} className="object-cover h-full w-full" />
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[350px]">
+                <motion.div whileHover={{ scale: 1.02 }} className="rounded-[40px] border-4 border-white overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] h-[350px] animate-float" style={{ animationDelay: '3s' }}>
                   <Image src="/images/gig-4.png" alt="Team" width={400} height={500} className="object-cover h-full w-full" />
                 </motion.div>
               </div>
@@ -199,102 +200,114 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
               {/* Feature 1: Large */}
-              <div className="md:col-span-2 md:row-span-2 p-10 rounded-[48px] bg-background border border-primary/10 relative overflow-hidden group flex flex-col justify-center shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
-                <div className="relative z-10">
-                  <h3 className="text-3xl md:text-4xl font-heading font-black text-foreground mb-6 leading-tight">
-                    Here's What You Get In Your <br />
-                    <span className="text-primary">Free CIBIL Score & Report</span>
-                  </h3>
+              <div className="md:col-span-2 md:row-span-2">
+                <Spotlight className="h-full bg-background border-primary/10 shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
+                  <div className="p-10 flex flex-col justify-center h-full relative z-10">
+                    <h3 className="text-3xl md:text-4xl font-heading font-black text-foreground mb-6 leading-tight">
+                      Here's What You Get In Your <br />
+                      <span className="text-primary">Free CIBIL Score & Report</span>
+                    </h3>
 
-                  <div className="space-y-5 mb-8">
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 mt-1">
-                        <Gauge className="w-5 h-5 text-primary" />
+                    <div className="space-y-5 mb-8">
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 mt-1">
+                          <Gauge className="w-5 h-5 text-primary" />
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          Your latest <span className="text-foreground font-bold">CIBIL Score</span>, a 3-digit numeric summary of your credit history (between 300 to 900).
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        Your latest <span className="text-foreground font-bold">CIBIL Score</span>, a 3-digit numeric summary of your credit history (between 300 to 900).
-                      </p>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center shrink-0 border border-warning/20 mt-1">
+                          <History className="w-5 h-5 text-warning" />
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          A summary of your credit <span className="text-foreground font-bold">payment history</span>, gathered from information provided by lenders.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center shrink-0 border border-success/20 mt-1">
+                          <Users className="w-5 h-5 text-success" />
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          <span className="text-foreground font-bold">Personal information</span> such as your name, date of birth and gender linked to your loan and credit cards.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-full bg-cyan/10 flex items-center justify-center shrink-0 border border-cyan/20 mt-1">
+                          <FileSearch className="w-5 h-5 text-cyan" />
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          A list of all <span className="text-foreground font-bold">enquiries</span> made by the lender for your loan and credit card applications for last 36 months.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20 mt-1">
+                          <Wallet className="w-5 h-5 text-accent" />
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          Details of all your active and inactive <span className="text-foreground font-bold">loan and credit card accounts</span>.
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center shrink-0 border border-warning/20 mt-1">
-                        <History className="w-5 h-5 text-warning" />
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        A summary of your credit <span className="text-foreground font-bold">payment history</span>, gathered from information provided by lenders.
-                      </p>
-                    </div>
-
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center shrink-0 border border-success/20 mt-1">
-                        <Users className="w-5 h-5 text-success" />
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        <span className="text-foreground font-bold">Personal information</span> such as your name, date of birth and gender linked to your loan and credit cards.
-                      </p>
-                    </div>
-
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-cyan/10 flex items-center justify-center shrink-0 border border-cyan/20 mt-1">
-                        <FileSearch className="w-5 h-5 text-cyan" />
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        A list of all <span className="text-foreground font-bold">enquiries</span> made by the lender for your loan and credit card applications for last 36 months.
-                      </p>
-                    </div>
-
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20 mt-1">
-                        <Wallet className="w-5 h-5 text-accent" />
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        Details of all your active and inactive <span className="text-foreground font-bold">loan and credit card accounts</span>.
-                      </p>
-                    </div>
+                    <Link href="/sign-up">
+                      <button className="bg-warning text-black px-8 py-3.5 rounded-xl font-black shadow-[0_4px_15px_rgba(255,187,51,0.4)] hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest flex items-center gap-2">
+                        Get Started Now <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </Link>
                   </div>
-
-                  <Link href="/sign-up">
-                    <button className="bg-warning text-black px-8 py-3.5 rounded-xl font-black shadow-[0_4px_15px_rgba(255,187,51,0.4)] hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest flex items-center gap-2">
-                      Get Started Now <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </Link>
-                </div>
+                </Spotlight>
               </div>
 
               {/* Feature 2 */}
-              <div className="md:col-span-2 p-12 rounded-[48px] bg-background border border-primary/10 overflow-hidden group flex flex-col justify-between shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
-                <div className="flex flex-col md:flex-row gap-12 items-start">
-                  <div className="flex-1">
-                    <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 border border-accent/20">
-                      <Globe className="w-8 h-8 text-accent" />
+              <div className="md:col-span-2">
+                <Spotlight className="h-full bg-background border-primary/10 shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
+                  <div className="p-12 flex flex-col justify-between h-full relative z-10">
+                    <div className="flex flex-col md:flex-row gap-12 items-start">
+                      <div className="flex-1">
+                        <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 border border-accent/20">
+                          <Globe className="w-8 h-8 text-accent" />
+                        </div>
+                        <h3 className="text-3xl font-heading font-black text-foreground mb-4">Multi-Platform Sync</h3>
+                        <p className="text-gray-600 text-lg font-medium leading-relaxed">
+                          Swiggy in the morning, Uber at night? We combine all your earnings into one powerful score.
+                        </p>
+                      </div>
+                      <div className="w-full md:w-32 grid grid-cols-2 gap-3 opacity-20 group-hover:opacity-100 transition-all duration-700">
+                        {[1, 2, 3, 4].map(i => <div key={i} className="aspect-square bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />)}
+                      </div>
                     </div>
-                    <h3 className="text-3xl font-heading font-black text-foreground mb-4">Multi-Platform Sync</h3>
-                    <p className="text-gray-600 text-lg font-medium leading-relaxed">
-                      Swiggy in the morning, Uber at night? We combine all your earnings into one powerful score.
-                    </p>
                   </div>
-                  <div className="w-full md:w-32 grid grid-cols-2 gap-3 opacity-20 group-hover:opacity-100 transition-all duration-700">
-                    {[1, 2, 3, 4].map(i => <div key={i} className="aspect-square bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />)}
-                  </div>
-                </div>
+                </Spotlight>
               </div>
 
               {/* Feature 3 */}
-              <div className="md:col-span-1 p-10 rounded-[40px] bg-background border border-primary/10 hover:border-primary/30 transition-all duration-500 shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
-                <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 border border-primary/10">
-                  <Lock className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-2xl font-heading font-black text-foreground mb-3">Steel Security</h3>
-                <p className="text-gray-600 text-sm font-medium leading-relaxed">AES-256 encrypted storage. Your privacy is non-negotiable.</p>
+              <div className="md:col-span-1">
+                <Spotlight className="h-full bg-background border-primary/10 hover:border-primary/30 shadow-[0_10px_40px_rgba(0,102,255,0.05)]">
+                  <div className="p-10 relative z-10">
+                    <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 border border-primary/10">
+                      <Lock className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-heading font-black text-foreground mb-3">Steel Security</h3>
+                    <p className="text-gray-600 text-sm font-medium leading-relaxed">AES-256 encrypted storage. Your privacy is non-negotiable.</p>
+                  </div>
+                </Spotlight>
               </div>
 
               {/* Feature 4 */}
-              <div className="md:col-span-1 p-10 rounded-[40px] bg-gradient-to-br from-primary via-blue-600 to-accent text-white shadow-[0_10px_30px_rgba(0,102,255,0.3)]">
-                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-8 text-white">
-                  <TrendingUp className="w-8 h-8" />
+              <div className="md:col-span-1">
+                <div className="h-full p-10 rounded-[40px] bg-gradient-to-br from-primary via-blue-600 to-accent text-white shadow-[0_10px_30px_rgba(0,102,255,0.3)] hover:scale-[1.02] transition-transform duration-500">
+                  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-8 text-white">
+                    <TrendingUp className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-heading font-black mb-3">Instant Credit</h3>
+                  <p className="text-white/90 text-sm font-bold leading-relaxed">Unlock pre-approved credit lines from 10+ NBFC partners.</p>
                 </div>
-                <h3 className="text-2xl font-heading font-black mb-3">Instant Credit</h3>
-                <p className="text-white/90 text-sm font-bold leading-relaxed">Unlock pre-approved credit lines from 10+ NBFC partners.</p>
               </div>
             </div>
           </div>
@@ -327,21 +340,23 @@ export default function LandingPage() {
                   onHoverEnd={() => setHoveredPillar(null)}
                   className="group"
                 >
-                  <div className={`h-full p-10 rounded-[48px] bg-white border border-primary/10 hover:${pillar.border} hover:shadow-[0_10px_40px_rgba(0,102,255,0.1)] transition-all duration-700 relative overflow-hidden shadow-sm`}>
-                    {/* Top Glow */}
-                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent group-hover:via-primary opacity-30 group-hover:opacity-100 transition-all duration-700`} />
+                  <div className={`h-full p-1 rounded-[40px] bg-gradient-to-br from-white/60 to-white/10 hover:from-primary/20 hover:to-accent/20 transition-all duration-500 shadow-sm hover:shadow-2xl relative`}>
+                    <div className="bg-white/90 backdrop-blur-xl h-full rounded-[38px] p-8 relative overflow-hidden flex flex-col">
 
-                    <div className="relative z-10 h-full flex flex-col">
-                      <div className="flex items-start justify-between mb-10">
-                        <div className={`w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center ${pillar.color} border border-primary/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,102,255,0.2)] transition-all duration-700`}>
-                          <pillar.icon className="w-8 h-8" />
+                      {/* Background Decor */}
+                      <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
+
+                      <div className="flex items-start justify-between mb-8 relative z-10">
+                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${pillar.color} bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] group-hover:scale-110 group-hover:shadow-lg transition-all duration-500`}>
+                          <pillar.icon className="w-7 h-7" />
                         </div>
-                        <div className="px-4 py-1.5 rounded-full bg-white border border-gray-100 shadow-sm group-hover:border-primary/30 transition-colors">
-                          <span className={`text-[10px] font-black tracking-[0.2em] uppercase ${pillar.color}`}>{pillar.status}</span>
+                        <div className="px-4 py-1.5 rounded-full bg-white border border-gray-100 shadow-sm group-hover:border-primary/20 transition-colors">
+                          <span className={`text-[9px] font-black tracking-[0.2em] uppercase ${pillar.color}`}>{pillar.status}</span>
                         </div>
                       </div>
+
                       <h3 className="text-2xl font-heading font-black text-foreground mb-4 tracking-tight group-hover:text-primary transition-colors">{pillar.title}</h3>
-                      <p className="text-gray-600 text-base leading-relaxed font-medium">{pillar.description}</p>
+                      <p className="text-gray-500 text-sm leading-relaxed font-bold">{pillar.description}</p>
 
                       <div className="mt-auto pt-8 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-500 cursor-pointer">
                         <span className="text-[10px] font-black uppercase text-primary tracking-widest">Detail View</span>

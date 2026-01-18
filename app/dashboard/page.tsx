@@ -21,11 +21,20 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useAuthStore } from '@/lib/auth-store';
 import { useRouter } from 'next/navigation';
+import { ScoreCircle } from '@/components/ScoreCircle';
+import { useState, useEffect } from 'react';
+import { Celebration } from '@/components/ui/Celebration';
 
 export default function UserDashboard() {
     const { total, grade } = useScoreStore();
     const logout = useAuthStore((state) => state.logout);
     const router = useRouter();
+    const [showCelebration, setShowCelebration] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setShowCelebration(false), 3000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleLogout = () => {
         logout();
@@ -87,8 +96,8 @@ export default function UserDashboard() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="relative group "
                 >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-blue-600 rounded-[50px] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
-                    <div className="relative bg-white backdrop-blur-3xl p-12 rounded-[48px] border border-primary/10 flex flex-col items-center text-center overflow-hidden shadow-[0_20px_60px_rgba(0,102,255,0.08)]">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-blue-600 rounded-[50px] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <div className="relative bg-white/80 backdrop-blur-3xl p-12 rounded-[48px] border border-white/20 flex flex-col items-center text-center overflow-hidden shadow-[0_20px_60px_rgba(0,102,255,0.08)]">
 
                         {/* Internal Chip Detail */}
                         <div className="absolute top-10 left-10 w-12 h-16 border border-gray-200 rounded-lg flex flex-col p-2 gap-1.5 opacity-30">
@@ -101,34 +110,21 @@ export default function UserDashboard() {
                             </div>
                         </div>
 
-                        {/* Circular Score Visual */}
-                        <div className="relative mb-8 mt-4">
-                            <div className="w-40 h-40 rounded-full bg-white border border-gray-100 flex items-center justify-center shadow-inner">
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                    className="absolute inset-0 rounded-full border border-dashed border-primary/20 scale-110"
-                                />
-                                <motion.div
-                                    animate={{ rotate: -360 }}
-                                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                                    className="absolute inset-4 rounded-full border border-dashed border-accent/20"
-                                />
-                                <div className="text-center">
-                                    <span className="text-6xl font-heading font-black text-foreground block">{total}</span>
-                                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mt-1">Hustle Val</span>
-                                </div>
-                            </div>
+                        {showCelebration && <Celebration />}
+
+                        {/* Replaced Custom Circle with Component */}
+                        <div className="mb-6 mt-4 scale-125">
+                            <ScoreCircle score={total} max={900} grade={grade} />
                         </div>
 
                         <h2 className="text-4xl font-heading font-black text-foreground mb-2 uppercase tracking-tight">Financial Potential</h2>
                         <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.5em] mb-10">Elite Tier Verification Status</p>
 
                         <div className="flex gap-6">
-                            <div className="px-6 py-3 bg-gray-50 border border-gray-200 rounded-[20px] text-primary text-xs font-black flex items-center gap-3 uppercase tracking-widest shadow-sm">
+                            <div className="px-6 py-3 bg-white border border-gray-100 rounded-[20px] text-primary text-xs font-black flex items-center gap-3 uppercase tracking-widest shadow-[0_10px_20px_rgba(0,0,0,0.03)] hover:scale-105 transition-transform">
                                 <Flame className="w-5 h-5 text-accent animate-pulse" /> Grade {grade}
                             </div>
-                            <div className="px-6 py-3 bg-gray-50 border border-gray-200 rounded-[20px] text-foreground text-xs font-black flex items-center gap-3 uppercase tracking-widest shadow-sm">
+                            <div className="px-6 py-3 bg-white border border-gray-100 rounded-[20px] text-foreground text-xs font-black flex items-center gap-3 uppercase tracking-widest shadow-[0_10px_20px_rgba(0,0,0,0.03)] hover:scale-105 transition-transform">
                                 <Target className="w-5 h-5 text-success" /> Top 5%
                             </div>
                         </div>
@@ -136,64 +132,68 @@ export default function UserDashboard() {
                 </motion.div>
 
                 {/* Grid Sections */}
-                <div className="grid md:grid-cols-2 gap-10">
+                <div className="grid md:grid-cols-2 gap-8">
                     {/* Score Boosters */}
-                    <section className="p-10 rounded-[40px] bg-white border border-primary/10 relative overflow-hidden shadow-sm">
-                        <div className="flex items-center justify-between mb-10">
+                    <section className="p-8 rounded-[40px] bg-white border border-gray-100/50 shadow-lg relative overflow-hidden group hover:shadow-xl transition-all duration-500">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
+
+                        <div className="flex items-center justify-between mb-8">
                             <div>
                                 <p className="text-[9px] font-black text-primary uppercase tracking-[0.4em] mb-2">Identity Upgrade</p>
-                                <h3 className="font-heading font-black text-2xl text-foreground">SCORE BOOSTERS</h3>
+                                <h3 className="font-heading font-black text-2xl text-foreground">Next Steps</h3>
                             </div>
-                            <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest cursor-pointer hover:text-primary transition-colors">View All</span>
+                            <span className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-colors">
+                                <ArrowRight className="w-4 h-4" />
+                            </span>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             {growthSteps.map((step, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="flex items-center justify-between p-5 bg-gray-50 rounded-3xl border border-gray-100 group hover:border-primary/30 transition-all cursor-pointer"
+                                    className="flex items-center justify-between p-4 bg-gray-50/80 rounded-2xl border border-transparent hover:border-primary/10 hover:bg-white hover:shadow-[0_10px_20px_rgba(0,0,0,0.02)] transition-all cursor-pointer group/item"
                                 >
-                                    <div className="flex items-center gap-5">
-                                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border border-gray-200 group-hover:border-primary/50 transition-all shadow-sm">
-                                            <step.icon className="w-5 h-5 text-gray-500 group-hover:text-primary transition-colors" />
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-gray-100 group-hover/item:border-primary/30 transition-colors">
+                                            <step.icon className="w-5 h-5 text-gray-400 group-hover/item:text-primary transition-colors" />
                                         </div>
                                         <div>
-                                            <p className="font-black text-sm text-foreground group-hover:text-primary transition-colors">{step.title}</p>
-                                            <p className="text-[9px] text-gray-500 font-black uppercase tracking-widest mt-1">{step.status}</p>
+                                            <p className="font-bold text-sm text-foreground group-hover/item:text-primary transition-colors">{step.title}</p>
+                                            <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{step.status}</p>
                                         </div>
                                     </div>
-                                    <span className="text-[10px] font-black text-success bg-success/10 px-3 py-1.5 rounded-xl border border-success/20">{step.reward}</span>
+                                    <span className="text-[10px] font-black text-success bg-white border border-success/10 px-3 py-1.5 rounded-lg shadow-sm">{step.reward}</span>
                                 </motion.div>
                             ))}
                         </div>
                     </section>
 
                     {/* Exclusive Perks */}
-                    <section className="p-10 rounded-[40px] bg-white border border-primary/10 relative overflow-hidden shadow-sm">
-                        <div className="flex items-center justify-between mb-10">
+                    <section className="p-8 rounded-[40px] bg-white border border-gray-100/50 shadow-lg relative overflow-hidden group hover:shadow-xl transition-all duration-500">
+                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl -z-10" />
+
+                        <div className="flex items-center justify-between mb-8">
                             <div>
                                 <p className="text-[9px] font-black text-accent uppercase tracking-[0.4em] mb-2">Tier Rewards</p>
-                                <h3 className="font-heading font-black text-2xl text-foreground">MASTER PERKS</h3>
+                                <h3 className="font-heading font-black text-2xl text-foreground">Unlocked Perks</h3>
                             </div>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             {perks.map((perk, i) => (
                                 <div
                                     key={i}
-                                    className="p-5 bg-gray-50 rounded-3xl border border-gray-100 flex items-center gap-6 group hover:bg-white transition-all cursor-pointer shadow-sm hover:shadow-md"
+                                    className="p-4 bg-gray-50/80 rounded-2xl border border-transparent hover:border-accent/10 hover:bg-white hover:shadow-[0_10px_20px_rgba(0,0,0,0.02)] transition-all cursor-pointer group/item flex items-center gap-4"
                                 >
-                                    <div className={`w-14 h-14 ${perk.bg} rounded-[20px] flex items-center justify-center ${perk.color} border border-current opacity-70 group-hover:opacity-100 transition-opacity`}>
-                                        <perk.icon className="w-7 h-7" />
+                                    <div className={`w-12 h-12 ${perk.bg} rounded-xl flex items-center justify-center ${perk.color} opacity-80 group-hover/item:opacity-100 transition-opacity`}>
+                                        <perk.icon className="w-6 h-6" />
                                     </div>
                                     <div className="flex-1">
-                                        <h4 className="font-black text-foreground uppercase text-xs tracking-wider">{perk.title}</h4>
-                                        <p className="text-[9px] text-gray-500 font-semibold uppercase tracking-widest mt-1">via {perk.provider}</p>
+                                        <h4 className="font-bold text-foreground text-sm">{perk.title}</h4>
+                                        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">via {perk.provider}</p>
                                     </div>
-                                    <button className="w-10 h-10 bg-white text-gray-400 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all border border-gray-100">
-                                        <ArrowRight className="w-5 h-5" />
-                                    </button>
+                                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover/item:text-accent transition-colors" />
                                 </div>
                             ))}
                         </div>
